@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEB-компоненты: КТ1</title>
+  <style>
+    .contact-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 250px;
+      padding: 16px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 16px;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      display: inline-block;
+      
+    }
+    .contact-card img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    .contact-card h3 {
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+    .contact-card p {
+      margin: 5px 0;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Карточки контактов</h1>
+
+  <!-- Шаблон для карточки контакта -->
+  <template id="contact-card">
+    <div class="contact-card">
+      <img src="" alt="Фото контакта" class="contact-photo">
+      <h3 class="contact-name"></h3>
+      <p class="contact-email"></p>
+      <p class="contact-phone"></p>
+    </div>
+  </template>
+
+  <div id="contacts-list"></div>
+
+  <script>
+    function createContactCard(photo, name, email, phone) {
+      const template = document.getElementById('contact-card');
+      const clone = template.content.cloneNode(true);
+
+      clone.querySelector('.contact-photo').src = photo;
+      clone.querySelector('.contact-name').textContent = name;
+      clone.querySelector('.contact-email').textContent = email;
+      clone.querySelector('.contact-phone').textContent = phone;
+
+      document.getElementById('contacts-list').appendChild(clone);
+    }
+    // Первые 3 карточки, которые сделал сам
+    createContactCard('https://dava.twl.su/web-components/khalisy.jpg', 'Дейенерис Таргариен', 'dtargarien@example.com', '+1 212 555-7575');
+    createContactCard('https://dava.twl.su/web-components/khal-drogo.jpg', 'Кхал Дрого', 'kdrogo@example.com', '+1 234 567-8900');
+    createContactCard('https://dava.twl.su/web-components/brann-stark.jpg', 'Бранн Старк', 'bstark@example.com', '+1 347 517-5379');
+
+    // Вторые 3 карточки, которые сгенерировал в randomuser.me
+    createContactCard('https://randomuser.me/api/portraits/men/1.jpg', 'Иван Иванов', 'ivan@example.com', '+7 900 123-45-67');
+    createContactCard('https://randomuser.me/api/portraits/women/2.jpg', 'Мария Смирнова', 'maria@example.com', '+7 900 234-56-78');
+    createContactCard('https://randomuser.me/api/portraits/men/3.jpg', 'Алексей Петров', 'aleksey@example.com', '+7 900 345-67-89');
+  </script>
+</body>
+</html>
